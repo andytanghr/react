@@ -6,7 +6,7 @@ class Display extends Component {
     this.state = {
       a: 1
     };
-  })
+  }
 
   edit() {};
 
