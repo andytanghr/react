@@ -28,7 +28,7 @@ class CityWeather extends Component {
 
   componentDidMount() {
     this.getData();
-    console.log('timer works')
+    console.log('component did mount')
 
   }
 
@@ -39,7 +39,7 @@ class CityWeather extends Component {
     let weatherNow =
       <div>
         <p>Current conditions: {this.state.condition}</p>
-        <p>Current temperature:  {degF}&#176;</p>
+        <p>Current temperature:  {degF}&#176;F</p>
       </div>
     return (
       <div>
