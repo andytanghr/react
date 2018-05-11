@@ -1,12 +1,16 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+
 import CounterControl from './CounterControl';
 import CounterOutput from './CounterOutput';
-import {connect} from 'react-redux';
+import RandomCity from './RandomCity';
+
 
 class Counter extends Component {
   // constructor(props) {
   //   super(props);
   // }
+
 
 
   render() {
@@ -15,11 +19,14 @@ class Counter extends Component {
 
     return (
       <div>
-        <CounterOutput counterLabel={this.props.ctr} />
-        <CounterControl title='increment by +1' onButtonPush={this.props.onIncrementCounter}/>
-        <CounterControl title='decrement by -1' />
-        <CounterControl title='increment by +5' />
-        <CounterControl title='decrement by -5' />
+        <CounterOutput counterLabel={this.props.city} />
+        <CounterControl title='increment by +1' onButtonPush={this.props.onIncrement1Counter}/>
+        <CounterControl title='decrement by -1' onButtonPush={this.props.onIncrement5Counter}/>
+        <CounterControl title='increment by +5' onButtonPush={this.props.onDecrement1Counter}/>
+        <CounterControl title='decrement by -5' onButtonPush={this.props.onDecrement5Counter}/>
+        <RandomCity currentCity={this.props.city} currentColors={''} onButtonPush={this.props.onChangeCity}/>
+         {/* humidity={this.props.humidity} pressure={this.props.pressure} temperature={this.props.temperature}  />  */}
+        
       </div>
 
 
@@ -31,15 +38,20 @@ class Counter extends Component {
 const mapStateToProps = state =>  {
   // console.log('mapping state to props works'); // it does
   return {
-    ctr: state.counter,
-    first: state.firstName
-    }
+    currentCity: state.city
+    
+    }, console.log('counter mapstatetoprops works');
 }
 
 const mapDispatchToProps = dispatch => {
   return {
-    onIncrementCounter: () => dispatch({type: 'INC_COUNTER'})
+    onIncrement1Counter: () => dispatch({type: 'INC1_COUNTER', payload: 'testing payload'}),
+    onIncrement5Counter: () => dispatch({type: 'INC5_COUNTER'}),
+    onDecrement1Counter: () => dispatch({type: 'DEC1_COUNTER'}),
+    onDecrement5Counter: () => dispatch({type: 'DEC5_COUNTER'}),
+    onChangeCity: () => dispatch( {type: 'CHANGE_CITY', payload: ''})
   }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Counter);
+// export default Counter;
